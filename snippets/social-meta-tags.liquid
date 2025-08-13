@@ -53,6 +53,10 @@
 {{ og_image_tags }}
 {{ og_image_secure_url_tags }}
 
+{% unless template.name == 'product' %}
+  {% render "scripts" %}
+{% endunless %}
+
 {% unless settings.social_twitter_link == blank %}
   <meta name="twitter:site" content="{{ settings.social_twitter_link | split: 'twitter.com/' | last | prepend: '@' }}">
 {% endunless %}
