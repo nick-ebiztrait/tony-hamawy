@@ -126,14 +126,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   
 {{ 'slick.js' |asset_url | script_tag }}
-  {% if template != 'index' %}
-  {{ content_for_header }}
-{% else %}
-  {{ content_for_header | remove: '"https:\/\/formbuilder.hulkapps.com\/skeletopapp.js?shop=tony-hamawy.myshopify.com"' | remove: '"https:\/\/fpcdn.me\/sdk\/shopify\/tony-hamawy.myshopify.com\/shopify.min.js?v=1710258818.8496\u0026shop=tony-hamawy.myshopify.com"' | remove: '"https:\/\/swymv3free-01.azureedge.net\/code\/swym-shopify.js?shop=tony-hamawy.myshopify.com"' | remove: '"\/\/productreviews.shopifycdn.com\/embed\/loader.js?shop=tony-hamawy.myshopify.com"' | remove: ',"https:\/\/formbuilder.hulkapps.com\/skeletopapp.js?shop=tony-hamawy.myshopify.com"'  }}
-{% endif %}
 
-  
-  
+  {{ content_for_header }}
+
 {% if template != 'index' %}  
 {{ 'jquery.ez-plus.js'  | asset_url | script_tag }}
    {{ 'jquery.elevatezoom.js'  | asset_url | script_tag }}
@@ -157,6 +152,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "oq6q0arwjm");
 </script>
+{% render 'scripts' %}
  {% render 'meta-schema' %}
 </head>
 
