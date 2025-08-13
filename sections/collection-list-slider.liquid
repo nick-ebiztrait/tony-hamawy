@@ -1,0 +1,279 @@
+<div class="page-width">
+  {% if section.settings.title != blank %}
+    <div class="section-header text-center">
+      <h2>{{ section.settings.title | escape }}</h2>
+    </div>
+  {% endif %}
+
+  {% case section.settings.grid %}
+    {% when 2 %}
+      {%- assign grid_item_width = 'medium-up--one-half' -%}
+    {% when 3 %}
+      {%- assign grid_item_width = 'small--one-half medium-up--one-third' -%}
+    {% when 4 %}
+      {%- assign grid_item_width = 'small--one-half medium-up--one-quarter' -%}
+    {% when 5 %}
+      {%- assign grid_item_width = 'small--one-half medium-up--one-fifth' -%}
+  {% endcase %}
+
+  <div class="collection-grid">
+    <div class="grid grid--uniform Collection-Grid-Slider">
+      {% for block in section.blocks limit: section.blocks.size %}
+        <div class="grid__item {{ grid_item_width }}" {{ block.shopify_attributes }}>
+          {%- assign collection = collections[block.settings.collection] -%}
+          {% if collection.image %}
+            {%- assign collection_image = collection.image -%}
+          {% elsif collection.products.first and collection.products.first.images != empty %}
+            {%- assign collection_image = collection.products.first.featured_image -%}
+          {% else %}
+            {% assign collection_image = blank %}
+          {% endif %}
+          <div class="collection-grid-item">
+            <div class="collection-col-custome">
+           <div class="collection-grid-item__title-wrapper">
+                {% if block.settings.Cimage1 != blank  %}
+                  <div class="Image-Slider">
+                   {%- assign height = block.settings.Cimage1.width | divided_by: block.settings.Cimage1.aspect_ratio | round -%}
+                    
+                    <a href="{{ block.settings.url1 }}">
+                    <img class="lazyload" src="{{ block.settings.Cimage1 | img_url: 'master' }}" data-src="{{ block.settings.Cimage1 | img_url: 'large' }}"
+                      data-widths="[540, 720, 900, 1080, 1296, 1512, 1728, 1944, 2048]"
+                      data-aspectratio="{{ block.settings.Cimage1.aspect_ratio }}"
+                      data-sizes="auto" width="{{ block.settings.Cimage1.width }}" height="{{ height }}"
+                      data-parent-fit="cover" loading="lazy"
+                      alt="{{ block.settings.Cimage1.alt | escape }}" style="width:auto; height:auto;">
+                    </a>
+
+                    
+                    {% if block.settings.Cimage2 != blank  %}
+                       <a href="{{ block.settings.url2 }}">
+                    <img class="lazyload" src="{{ block.settings.Cimage2 | img_url: 'master' }}" data-src="{{ block.settings.Cimage2 | img_url: 'large' }}"
+                      data-widths="[540, 720, 900, 1080, 1296, 1512, 1728, 1944, 2048]"
+                      data-aspectratio="{{ block.settings.Cimage2.aspect_ratio }}"
+                      data-sizes="auto" width="{{ block.settings.Cimage2.width }}" height="{{ height }}"
+                      data-parent-fit="cover" loading="lazy"
+                      alt="{{ block.settings.Cimage2.alt | escape }}" style="width:auto; height:auto;">
+                       </a>
+                      
+                    {% endif %}
+                    {% if block.settings.Cimage3 != blank  %}
+                            <a href="{{ block.settings.url3 }}">
+                    <img class="lazyload" src="{{ block.settings.Cimage3 | img_url: 'master' }}" data-src="{{ block.settings.Cimage3 | img_url: 'large' }}"
+                      data-widths="[540, 720, 900, 1080, 1296, 1512, 1728, 1944, 2048]"
+                      data-aspectratio="{{ block.settings.Cimage3.aspect_ratio }}"
+                      data-sizes="auto" width="{{ block.settings.Cimage3.width }}" height="{{ height }}"
+                      data-parent-fit="cover" loading="lazy"
+                      alt="{{ block.settings.Cimage3.alt | escape }}" style="width:auto; height:auto;">
+                            </a>
+                    {% endif %}
+                    {% if block.settings.Cimage4 != blank  %}
+
+                       <a href="{{ block.settings.url4 }}">
+                    <img class="lazyload" src="{{ block.settings.Cimage4 | img_url: 'master' }}" data-src="{{ block.settings.Cimage4 | img_url: 'large' }}"
+                      data-widths="[540, 720, 900, 1080, 1296, 1512, 1728, 1944, 2048]"
+                      data-aspectratio="{{ block.settings.Cimage4.aspect_ratio }}"
+                      data-sizes="auto" width="{{ block.settings.Cimage4.width }}" height="{{ height }}"
+                      data-parent-fit="cover" loading="lazy"
+                      alt="{{ block.settings.Cimage4.alt | escape }}" style="width:auto; height:auto;">
+                       </a>
+                      
+                    {% endif %}
+                    {% if block.settings.Cimage5 != blank  %}
+                        <a href="{{ block.settings.url5 }}">
+                    <img class="lazyload" src="{{ block.settings.Cimage5 | img_url: 'master' }}" data-src="{{ block.settings.Cimage5 | img_url: 'large' }}"
+                      data-widths="[540, 720, 900, 1080, 1296, 1512, 1728, 1944, 2048]"
+                      data-aspectratio="{{ block.settings.Cimage5.aspect_ratio }}"
+                      data-sizes="auto" width="{{ block.settings.Cimage5.width }}" height="{{ height }}"
+                      data-parent-fit="cover" loading="lazy"
+                      alt="{{ block.settings.Cimage5.alt | escape }}" style="width:auto; height:auto;">
+                        </a>
+                    {% endif %}
+                  </div>
+                {% else %}
+                  {%- assign height = collection_image.width | divided_by: collection_image.aspect_ratio | round -%}
+                  <img class="lazyload" src="{{ collection_image | img_url: 'master' }}" data-src="{{ collection_image | img_url: 'large'  }}"
+                    data-widths="[540, 720, 900, 1080, 1296, 1512, 1728, 1944, 2048]"
+                    data-aspectratio="{{ collection_image.aspect_ratio }}"
+                    data-sizes="auto" width="{{ collection_image.width }}" height="{{height }}"
+                    data-parent-fit="cover" loading="lazy"
+                    alt="{{ collection_image.alt | escape }}" style="width:auto; height:auto;">
+                {% endif %}
+                <h3 class="collection-grid-item__title">
+                  <a href="{% if block.settings.button_link != blank%} {{block.settings.button_link}}{% else %}{{ collection.url }}{% endif%}" class="collection-grid-item__link">
+              
+                  <span class="col-mide-custom">
+                  {% if collection.title == blank %}
+                    {{ 'homepage.onboarding.collection_title' | t }}
+                  {% else %}
+                    {{ collection.title }}
+                  {% endif %}
+                  </span>
+                   </a>
+                </h3>
+              </div>
+              {% comment %}
+              <div class="col-button"><span>{{ block.settings.button }} <i class="fa fa-long-arrow-right" aria-hidden="true"></i> </span></div>  {% endcomment %}
+           
+          
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  {% if section.blocks.size == 0 %}
+    {% include 'no-blocks' %}
+  {% endif %}
+</div>
+
+<script>
+  $(".Image-Slider").slick({
+     slidesToShow: 1,
+     infinite:false,
+     slidesToScroll: 1,
+     autoplay: true,
+     autoplaySpeed: 2000,
+     responsive: [
+      {
+        breakpoint: 749,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  });
+</script>
+
+{% schema %}
+  {
+    "name": "Collection list slider",
+    "class": "index-section",
+    "max_blocks": 12,
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Collection list"
+      },
+      {
+        "type": "range",
+        "id": "grid",
+        "label": "Collections per row",
+        "min": 2,
+        "max": 5,
+        "step": 1,
+        "default": 3
+      }
+    ],
+    "blocks": [
+      {
+        "type": "featured_collection",
+        "name": "Collection",
+        "settings": [
+          {
+            "label": "Collection",
+            "id": "collection",
+            "type": "collection"
+          },
+
+  {
+            "type": "url",
+            "id": "url1",
+            "label": "url"
+          },
+          
+          {
+            "type": "image_picker",
+            "id": "Cimage1",
+            "label": "Collection Image"
+          },
+
+
+            {
+            "type": "url",
+            "id": "url2",
+            "label": "url"
+          },
+
+          
+          {
+            "type": "image_picker",
+            "id": "Cimage2",
+            "label": "Collection Image"
+          },
+
+
+          
+            {
+            "type": "url",
+            "id": "url3",
+            "label": "url"
+          },
+          
+          {
+            "type": "image_picker",
+            "id": "Cimage3",
+            "label": "Collection Image"
+          },
+
+
+
+            {
+            "type": "url",
+            "id": "url4",
+            "label": "url"
+          },
+          
+          {
+            "type": "image_picker",
+            "id": "Cimage4",
+            "label": "Collection Image"
+          },
+
+
+  {
+            "type": "url",
+            "id": "url5",
+            "label": "url"
+          },
+          
+          {
+            "type": "image_picker",
+            "id": "Cimage5",
+            "label": "Collection Image"
+          },
+          {
+            "type": "text",
+            "id": "button",
+            "label": "Button label"
+          },
+          {
+            "type": "url",
+            "id": "button_link",
+            "label": "Custom Collection Link"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Collection list slider",
+        "category": "Collection",
+        "blocks": [
+          {
+            "type": "featured_collection"
+          },
+          {
+            "type": "featured_collection"
+          },
+          {
+            "type": "featured_collection"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

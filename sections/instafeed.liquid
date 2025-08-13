@@ -1,0 +1,52 @@
+<div class="clearfix"></div>
+<div class="instagram">
+  <h1>{{ section.settings.title }}</h1>
+	<div id="instafeed"></div>
+  {% assign insta_temp = '<a href="{{link}}" class="grid__item one-fifth  hoverinsta" target="_blank" id="{{id}}"><img src="{{image}}" /><span><i class="fa fa-instagram" aria-hidden="true"></i></span></a>' %}
+</div>
+<script type="text/javascript">
+  var userFeed = new Instafeed({
+    get: 'user',
+    userId: '{{ section.settings.user_id }}',
+    accessToken: '{{ section.settings.access_token }}',
+    resolution: 'standard_resolution',
+    template: '{{ insta_temp }}',
+    sortBy: 'most-recent',
+    limit: 5,
+    links: false
+  });
+  userFeed.run();
+</script>
+<div class="clearfix"></div>
+
+{% schema %}
+  {
+    "name": "Instagram",
+    "settings": [
+	{
+		"type":"text",
+		"id":"title",
+		"label":"Heading"
+	},
+	
+	{
+		"type":"text",
+		"id":"user_id",
+		"label":"User Id"
+	},
+	{
+		"type":"text",
+		"id":"access_token",
+		"label":"Access Token"
+	}
+	
+
+],
+   "presets": [{
+      "name": "Instagram",
+      "category": "Promotional"
+     }
+      ]
+    }
+{% endschema %}
+

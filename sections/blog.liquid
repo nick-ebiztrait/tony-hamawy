@@ -1,0 +1,18 @@
+<div class="custom-blog-section">
+  <div class="blog-image text-center">
+  	<img src="{{section.settings.image | img_url:'master'}}">
+  </div>
+ 
+</div>
+{% schema %}
+  {
+    "name": "Blog",
+    "settings": [
+	{
+      "type":"image_picker",
+      "id":"image",
+      "label":"Image"
+	}	
+	]
+  }
+{% endschema %}

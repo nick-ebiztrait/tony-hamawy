@@ -1,0 +1,52 @@
+<div class="real-brides">
+  <div class="top-headings">
+    <h1 class="text-center">{{section.settings.title}}</h1>
+    <h1 class="text-center">{{section.settings.wed_pic}}</h1>
+  </div>
+  <div class="wedding-pics">
+  	{% for block in section.blocks %}
+    <div class="grid__item one-third">
+    	<img src="{{ block.settings.image | img_url:'master' }}">
+      	{% if block.settings.name != blank %}
+        <h4 class="text-center">{{ block.settings.name }}</h4>
+      	{% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Real Brides",
+    "settings": [
+	{
+		"type":"text",
+		"id":"title",
+		"label":"Title"
+	},
+	{
+		"type":"text",
+		"id":"wed_pic",
+		"label":"Heading"
+	}
+],
+"blocks": [
+{
+		"type": "image",
+        "name": "Wedding Pictures",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+		{
+		   "type":"text",
+		   "id":"name",
+		   "label":"Bride & Groom Name"	
+		}
+	]
+  }
+]
+	
+}
+{% endschema %}

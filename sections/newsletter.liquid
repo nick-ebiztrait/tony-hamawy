@@ -1,0 +1,87 @@
+<div class="newsletter-section{% if section.settings.show_background %} index-section--newsletter-background{% endif %}">
+  <div class="page-width text-center">
+    <div class="section-header text-center">
+      {% if section.settings.section_title != blank %}
+        <label for="Email" class="h2">{{ section.settings.section_title | escape }}</label>
+      {% endif %}
+      {% if section.settings.subheading != blank %}
+        <p>{{ section.settings.subheading | escape }}</p>
+      {% endif %}
+    </div>
+    {% comment %}
+    {% form 'customer' %}
+      {{ form.errors | default_errors }}
+      {% if form.posted_successfully? %}
+        <p class="form--success">{{ 'general.newsletter_form.confirmation' | t }}</p>
+      {% else %}
+        <div class="input-group password__input-group">
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <input type="email"
+            name="contact[email]"
+            id="Email"
+            class="input-group__field newsletter__input"
+            value="{% if customer %}{{ customer.email }}{% endif %}"
+            placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"
+            autocorrect="off"
+            autocapitalize="off">
+          <input type="text" name="contact[zip]" placeholder="Zip Code">
+          <span class="input-group__btn">
+            <button type="submit" class="btn newsletter__submit" name="commit" id="Subscribe">
+              <span class="newsletter__submit-text--large">{{ 'general.newsletter_form.submit' | t }}</span>
+            </button>
+          </span>
+        </div>
+      {% endif %}
+    {% endform %}
+    {% endcomment %}
+    <form action="https://tonyhamawy.us17.list-manage.com/subscribe/post?u=7dadcf05e193735d8966c4bb3&amp;id=88192da0b3" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+	<input type="email" value="" name="EMAIL" class="required email" id="Email" placeholder="Email" >
+     <input type="text" name="ZIPCODE" class="" value="" id="mce-ZIPCODE" placeholder="Zip Code"> 
+      <button type="submit" value="Subscribe" name="subscribe" id="Subscribe" class="btn newsletter__submit" >
+        <span class="newsletter__submit-text--large">Subscribe</span>
+
+      </button>  
+</form>
+    <h3 class="policy-content">{{ section.settings.policy }}</h3>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Newsletter",
+    "class": "index-section index-section--flush",
+    "settings": [
+      {
+        "type": "text",
+        "id": "section_title",
+        "label": "Heading",
+        "default": "Subscribe to our newsletter"
+      },
+      {
+        "type": "text",
+        "id": "subheading",
+        "label": "Subheading",
+        "default": "A short sentence describing what someone will receive by subscribing"
+      },
+      {
+        "id": "show_background",
+        "type": "checkbox",
+        "label": "Show background",
+        "default": true
+      },
+      {
+        "type": "paragraph",
+        "content": "Any customers who sign up will have an account created for them in Shopify. [View customers](/admin/customers?query=&accepts_marketing=1)"
+      },
+	{
+		"type":"text",
+		"id":"policy",
+		"label":"Custom Content"
+	}	
+    ],
+    "presets": [{
+      "name": "Newsletter",
+      "category": "Promotional"
+    }]
+  }
+{% endschema %}

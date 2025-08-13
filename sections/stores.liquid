@@ -1,0 +1,54 @@
+<div class="stores">
+  <h1 class="text-center">{{ section.settings.title }}</h1>
+  <div class="stores-adddress">
+  	{% for block in section.blocks %}  
+    <div class="main-location">
+    	<div class="grid__item one-whole">
+          <div class="store-address">
+            <strong>{{ block.settings.store-heading }}</strong><br>
+            {{ block.settings.store-address }}
+          </div>
+          <div class="store-map">{{ block.settings.store-map }}</div>
+       </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Stores",
+    "settings": [
+	  {
+  		"type":"text",
+		"id":"title",
+		"label":"Heading"
+      }
+	],
+
+	"blocks": [
+	{
+		"type": "text",
+        "name": "Stores",
+      "settings": [
+		 {
+          "type": "text",
+          "id": "store-heading",
+          "label": "Store Heading"
+        },
+        {
+          "type": "textarea",
+          "id": "store-address",
+          "label": "Store Address"
+        },
+		{
+          "type": "textarea",
+          "id": "store-map",
+          "label": "Stores Map"
+        }
+	]
+  }
+]
+  }
+{% endschema %}
+

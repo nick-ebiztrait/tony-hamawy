@@ -1,0 +1,52 @@
+<div class="our-bride">
+  <h2 class="text-center">{{ section.settings.title }}</h2>
+  {% for block in section.blocks %}
+  	<div class="grid__item one-third">
+      {% if block.settings.image != blank %}
+      	<img src="{{block.settings.image | img_url:'master'}}">
+      {% endif %}
+      {% if block.settings.heading != blank %}
+     	 <h4 class="text-center">{{ block.settings.heading }}</h4>
+      {% endif %}
+      {% if block.settings.description != blank %}
+      	<p>{{ block.settings.description }}</p>
+      {% endif %}
+   </div>
+  {% endfor %}
+</div>
+{% schema %}
+  {
+    "name": "Our Brides",
+    "settings": [
+	  {
+		"type":"text",
+		"id":"title",
+		"label":"Title"
+	   }
+	],
+	"blocks": [
+      {
+        "type": "text",
+        "name": "Add Content",
+	"settings": [
+          {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading"
+          },
+		 {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+		 {
+            "type": "textarea",
+            "id": "description",
+            "label": "Description"
+          }
+	  ]
+  }
+]
+  }
+{% endschema %}
+

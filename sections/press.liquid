@@ -1,0 +1,26 @@
+<div class="press">
+  	{% for block in section.blocks %}
+  		<div class="grid__item one-third">
+  			<img src="{{ block.settings.image | img_url:'master' }}">
+  		</div>
+    {% endfor %}
+</div>
+{% schema %}
+  {
+    "name": "Press",
+	"blocks":
+  [
+     {
+      "type":"image",
+      "name":" Press Image",
+      "settings": [
+         {
+          "type":"image_picker",
+          "id":"image",
+          "label":"Press Image"
+         }	 
+      ]
+    }
+  ]
+}
+{% endschema %}

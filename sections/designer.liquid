@@ -1,0 +1,18 @@
+<div class="designer-section">
+  <div class="designer-image text-center">
+  	<img src="{{section.settings.image | img_url:'grande'}}">
+  </div>
+ 
+</div>
+{% schema %}
+  {
+    "name": "Designer",
+    "settings": [
+	{
+      "type":"image_picker",
+      "id":"image",
+      "label":"Image"
+	}	
+	]
+  }
+{% endschema %}

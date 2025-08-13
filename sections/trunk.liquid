@@ -1,0 +1,54 @@
+<div class="trunk">
+  <h1 class="text-center">{{ section.settings.title }}</h1>
+  <div class="trunk-show">
+  	{% for block in section.blocks %}   
+    <div class="main-location">
+    	<div class="grid__item one-whole">
+          <div class="store-address">
+          <strong>{{ block.settings.heading }}</strong><br>
+          {{ block.settings.trunk-address }}
+        </div>
+    	<div class="store-map">{{ block.settings.trunk-map }}</div>
+       </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Trunk Show",
+    "settings": [
+	  {
+  		"type":"text",
+		"id":"title",
+		"label":"Heading"
+      }
+	],
+
+	"blocks": [
+	{
+		"type": "text",
+        "name": "Trunk Shows",
+      "settings": [
+		 {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "textarea",
+          "id": "trunk-address",
+          "label": "Address"
+        },
+		{
+          "type": "textarea",
+          "id": "trunk-map",
+          "label": "Trunk Shows Map"
+        }
+	]
+  }
+]
+  }
+{% endschema %}
+

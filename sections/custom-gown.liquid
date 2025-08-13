@@ -1,0 +1,23 @@
+<div class="custom-gown-section">
+  <div class="bridal-image text-center">
+  	<img src="{{section.settings.image | img_url:'master'}}">
+  </div>
+  <div class="bridal-content"><p>{{ section.settings.content }}</p></div>
+</div>
+{% schema %}
+  {
+    "name": "Custom Gowns",
+    "settings": [
+	{
+      "type":"image_picker",
+      "id":"image",
+      "label":"Image"
+	},
+	{
+      "type":"textarea",
+      "id":"content",
+      "label":"Description"
+	}
+	]
+  }
+{% endschema %}

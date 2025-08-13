@@ -1,0 +1,103 @@
+<div class="page-width rich-text">
+  <div class="grid">
+    <div class="grid__item {% unless section.settings.full_width %}{% endunless %}">
+      <div class="rich-text-custom-home">
+        {% if section.settings.section_title != blank %}
+          <div class="rich-text__heading--{{ section.settings.text_size }} text-center">
+            <h2 class="h3">{{ section.settings.section_title | escape }}</h2>
+          </div>
+        {% endif %}
+        {% if section.settings.text != blank %}
+          <div class="rich-text__text--{{ section.settings.text_size }} rte-setting text-center">
+            {{ section.settings.text }}
+          </div>
+        {% endif %}
+
+        <div class="new-rich-button {% if section.settings.button and section.settings.button2 %}two_btn{% endif %}">
+          {% if section.settings.button != blank %}
+            <div class="button text-center">
+              <a href="{{section.settings.link}}">{{ section.settings.button }}</a>
+            </div>
+          {% endif %}
+          {% if section.settings.button2 != blank %}
+            <div class="button text-center secound">
+              <a href="{{section.settings.link2}}">{{ section.settings.button2 }}</a>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Rich text",
+  "class": "index-section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Wide display"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Heading",
+      "default": "Talk about your brand"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+    },
+{
+      "type": "text",
+      "id": "button",
+      "label": "Button Label"
+    },
+ {
+      "type": "url",
+      "id": "link",
+      "label": "Link"
+    },
+    {
+      "type": "text",
+      "id": "button2",
+      "label": "Button Label"
+    },
+ {
+      "type": "url",
+      "id": "link2",
+      "label": "Link"
+    },
+    {
+      "type": "select",
+      "id": "text_size",
+      "label": "Size",
+      "default": "medium",
+      "options": [
+        {
+          "label": "Small",
+          "value": "small"
+        },
+        {
+          "label": "Medium",
+          "value": "medium"
+        },
+        {
+          "label": "Large",
+          "value": "large"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Rich text",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,43 @@
+<section class="ban_sec">
+    <div class="container">
+        <div class="ban_img">
+            <img src="{{ section.settings.image | img_url:'original' }}" alt="banner" border="0">
+        </div>
+    </div>
+</section>
+
+
+{% schema %}
+  {
+    "name": "sr_image",
+    "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          }
+],
+    "presets": [{
+      "name": "sr_image",
+      "category": "Image"
+    }]
+  }
+{% endschema %}
+<style>
+  .ban_sec {
+    width: 100%;
+  }
+  .ban_img {
+    width: 100%;
+    position: relative;
+  }
+  .ban_img img {
+    width: 100%;
+  }
+  @media only screen and (max-width: 767px) {
+  .ban_img img {
+    min-height: 290px;
+    object-fit: cover;
+  }
+}
+</style>
